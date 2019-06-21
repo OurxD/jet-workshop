@@ -6,8 +6,9 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start",
-    "production": "next build && next start"
+    "production": "next build && next start",
+    "heroku-postbuild": "npm run build",
+    "start": "next start -p $PORT"
   },
   "repository": {
     "type": "git",
