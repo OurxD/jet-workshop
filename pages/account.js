@@ -1,7 +1,14 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
+
+const HEADING_LABEL = 'Account 👤';
 
 const Account = () => (
-  <h1>Hola account!</h1>
+  <>
+    <Typography variant="h2" color="inherit">
+      {HEADING_LABEL}
+    </Typography>
+  </>
 );
 
 export default Account;

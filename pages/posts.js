@@ -1,7 +1,14 @@
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
+
+const HEADING_LABEL = 'Posts 📒';
 
 const Posts = () => (
-  <h1>Hola posts!</h1>
+  <>
+    <Typography variant="h2" color="inherit">
+      {HEADING_LABEL}
+    </Typography>
+  </>
 );
 
 export default Posts;
