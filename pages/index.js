@@ -5,7 +5,7 @@ import { gql } from 'apollo-boost';
 import client from '../apollo/client';
 
 const BUTTON_LABEL = 'click me 💘';
-const HEADING_LABEL = 'oliwi 🌝';
+const HEADING_LABEL = 'oliwi amix 🌝';
 const onClick = () => console.log('well hello there 👀');
 
 const Home = () => {

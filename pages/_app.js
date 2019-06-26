@@ -2,6 +2,7 @@ import React from 'react';
 import App, { Container } from 'next/app';
 import { ThemeProvider } from '@material-ui/styles';
 import CssBaseline from '@material-ui/core/CssBaseline';
+import MaterialUIContainer from '@material-ui/core/Container';
 import { polyfill } from 'es6-promise';
 import theme from '../styles/theme';
 
@@ -24,7 +25,9 @@ class MyApp extends App {
         <ThemeProvider theme={theme}>
           {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
           <CssBaseline />
-          <Component {...pageProps} />
+          <MaterialUIContainer maxWidth="sm">
+            <Component {...pageProps} />
+          </MaterialUIContainer>
         </ThemeProvider>
       </Container>
     );
