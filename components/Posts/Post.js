@@ -30,24 +30,24 @@ const Post = ({
   title,
   description,
   favorite,
-  dispatch,
+  // dispatch,
   id,
 }) => {
   const classes = useStyles();
-  const toggleFavorite = useCallback(
-    () => dispatch({
-      type: 'toggleFavorite',
-      id,
-    }),
-    [],
-  );
-  const deletePost = useCallback(
-    () => dispatch({
-      type: 'delete',
-      id,
-    }),
-    [],
-  );
+  // const toggleFavorite = useCallback(
+  //   () => dispatch({
+  //     type: 'toggleFavorite',
+  //     id,
+  //   }),
+  //   [],
+  // );
+  // const deletePost = useCallback(
+  //   () => dispatch({
+  //     type: 'delete',
+  //     id,
+  //   }),
+  //   [],
+  // );
 
   return (
     <Grid item>
@@ -72,13 +72,13 @@ const Post = ({
         >
           <IconButton
             aria-label="Add to favorites"
-            onClick={toggleFavorite}
+            // onClick={toggleFavorite}
           >
             <FavoriteIcon className={favorite ? classes.favorited : ''} />
           </IconButton>
           <IconButton
             aria-label="Delete"
-            onClick={deletePost}
+            // onClick={deletePost}
           >
             <DeleteIcon />
           </IconButton>

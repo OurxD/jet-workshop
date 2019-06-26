@@ -8,35 +8,19 @@ const BUTTON_LABEL = 'click me 💘';
 const HEADING_LABEL = 'oliwi amix 🌝';
 const onClick = () => console.log('well hello there 👀');
 
-const Home = () => {
-  client
-    .query({
-      query: gql`
-        {
-          users {
-              id
-              name
-              posts
-          }
-        }
-      `,
-    })
-    .then(result => console.log(result));
-
-  return (
-    <>
-      <Typography variant="h2" color="inherit">
-        {HEADING_LABEL}
-      </Typography>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={onClick}
-      >
-        {BUTTON_LABEL}
-      </Button>
-    </>
-  );
-};
+const Home = () => (
+  <>
+    <Typography variant="h2" color="inherit">
+      {HEADING_LABEL}
+    </Typography>
+    <Button
+      variant="contained"
+      color="primary"
+      onClick={onClick}
+    >
+      {BUTTON_LABEL}
+    </Button>
+  </>
+);
 
 export default Home;
