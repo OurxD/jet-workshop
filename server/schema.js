@@ -3,17 +3,17 @@ const { makeExecutableSchema } = require('graphql-tools');
 const USERS = [
   {
     id: 1,
-    name: '🙉',
+    name: 'Anto',
     postsIds: [1],
   },
   {
     id: 2,
-    name: '🙈',
+    name: 'Orli',
     postsIds: [2, 3],
   },
   {
     id: 3,
-    name: '🙊',
+    name: 'Oliwi Amix',
     postsIds: [4, 5, 6],
   },
 ];
@@ -67,6 +67,7 @@ const schema = makeExecutableSchema({
     type User {
       id: Int!
       name: String
+      posts: [Post]
     }
 
     type Post {
@@ -74,21 +75,28 @@ const schema = makeExecutableSchema({
       title: String
       description: String
       favorite: Boolean
+      author: User
     }
 
     type Query {
-      posts(id: Int): [Post]
-      users(id: Int): [User]
+      post(id: Int): Post
+      posts: [Post]
+      user(id: Int): User
+      users: [User]
     }
   `,
   resolvers: {
     Query: {
-      posts: (_, { id }) => (id
-        ? [POSTS.find(({ id: postId }) => id === postId)]
-        : POSTS),
-      users: (_, { id }) => (id
-        ? [USERS.find(({ id: userId }) => id === userId)]
-        : USERS),
+      post: (_, { id }) => POSTS.find(({ id: postId }) => id === postId),
+      posts: () => POSTS,
+      user: (_, { id }) => USERS.find(({ id: userId }) => id === userId),
+      users: () => USERS,
+    },
+    Post: {
+      author: ({ authorId }) => USERS.find(({ id }) => authorId === id),
+    },
+    User: {
+      posts: ({ id }) => POSTS.filter((({ authorId }) => authorId === id)),
     },
   },
 });
