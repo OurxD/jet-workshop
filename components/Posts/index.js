@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useReducer } from 'react';
 import Grid from '@material-ui/core/Grid';
 import Post from './Post';
 
@@ -35,29 +35,54 @@ const POSTS_INFO = [
   },
 ];
 
-const Posts = () => (
-  <Grid
-    container
-    direction="column"
-    justify="flex-start"
-    alignItems="flex-start"
-    spacing={2}
-    wrap="nowrap"
-  >
-    {POSTS_INFO.map(({
-      title,
-      description,
-      favorite,
-    }, index) => (
-      <Post
-        key={title}
-        title={title}
-        description={description}
-        favorite={favorite}
-        position={index + 1}
-      />
-    ))}
-  </Grid>
-);
+const postsReducer = (posts, action) => {
+  switch (action.type) {
+    case 'toggleFavorite':
+      return posts.map((post, index) => {
+        if (index !== action.index) {
+          return post;
+        }
+
+        return {
+          ...post,
+          favorite: !post.favorite,
+        };
+      });
+    case 'delete':
+      return posts.filter((_, index) => index !== action.index);
+    default:
+      throw new Error();
+  }
+};
+
+const Posts = () => {
+  const [postsData, dispatch] = useReducer(postsReducer, POSTS_INFO);
+
+  return (
+    <Grid
+      container
+      direction="column"
+      justify="flex-start"
+      alignItems="flex-start"
+      spacing={2}
+      wrap="nowrap"
+    >
+      {postsData.map(({
+        title,
+        description,
+        favorite,
+      }, index) => (
+        <Post
+          key={title}
+          title={title}
+          description={description}
+          favorite={favorite}
+          index={index}
+          dispatch={dispatch}
+        />
+      ))}
+    </Grid>
+  );
+};
 
 export default Posts;

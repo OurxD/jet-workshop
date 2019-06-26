@@ -14,6 +14,7 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { red } from '@material-ui/core/colors';
 import FavoriteIcon from '@material-ui/icons/Favorite';
+import DeleteIcon from '@material-ui/icons/Delete';
 // import ShareIcon from '@material-ui/icons/Share';
 // import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 // import MoreVertIcon from '@material-ui/icons/MoreVert';
@@ -49,7 +50,8 @@ const Post = ({
   title,
   description,
   favorite,
-  position,
+  index,
+  dispatch,
 }) => {
   const classes = useStyles();
 
@@ -59,16 +61,30 @@ const Post = ({
         <CardHeader
           avatar={(
             <Avatar aria-label="Recipe" className={classes.avatar}>
-              {position}
+              {index + 1}
             </Avatar>
           )}
           action={(
-            // <IconButton aria-label="Settings">
-            //   <MoreVertIcon />
-            // </IconButton>
-            <IconButton aria-label="Add to favorites">
-              <FavoriteIcon className={favorite ? classes.favorited : ''} />
-            </IconButton>
+            <>
+              <IconButton
+                aria-label="Add to favorites"
+                onClick={() => dispatch({
+                  type: 'delete',
+                  index,
+                })}
+              >
+                <DeleteIcon />
+              </IconButton>
+              <IconButton
+                aria-label="Add to favorites"
+                onClick={() => dispatch({
+                  type: 'toggleFavorite',
+                  index,
+                })}
+              >
+                <FavoriteIcon className={favorite ? classes.favorited : ''} />
+              </IconButton>
+            </>
           )}
           title={title}
           subheader="author name goes here"
