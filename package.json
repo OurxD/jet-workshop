@@ -4,11 +4,14 @@
   "description": "from scratch to prod",
   "main": "index.js",
   "scripts": {
-    "dev": "pm2 start server",
-    "devServer": "pm2 start server --watch --no-daemon",
+    "devEXPRESS": "pm2 start server",
+    "devServerEXPRESS": "pm2 start server --watch --no-daemon",
+    "buildEXPRESS": "next build",
+    "startEXPRESS": "NODE_ENV=production node server",
+    "heroku-postbuild": "npm run build",
+    "dev": "next",
     "build": "next build",
-    "start": "NODE_ENV=production node server",
-    "heroku-postbuild": "npm run build"
+    "start": "next start -p $PORT"
   },
   "repository": {
     "type": "git",
