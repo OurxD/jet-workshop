@@ -27,16 +27,17 @@ const useQueryReducer = (_, action) => {
 };
 const EMPTY_OBJECT = {};
 
+export const runQuery = query => client.query({
+  query,
+});
+
 const useQuery = (query, options = EMPTY_OBJECT) => {
   const [state, dispatch] = useReducer(useQueryReducer, initialState);
 
   useEffect(() => {
     const callQuery = async () => {
       try {
-        const { data } = await client.query({
-          query,
-          // fetchPolicy,
-        });
+        const { data } = await runQuery(query);
   
         dispatch({
           type: 'success',

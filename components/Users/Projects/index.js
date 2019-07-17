@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
-import Project from './Project';
 import Typography from '@material-ui/core/Typography';
+import Project from './Project';
 
 const Projects = ({
   projects

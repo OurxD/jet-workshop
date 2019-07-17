@@ -11,7 +11,6 @@ const User = ({
   <Grid item xs={4}>
     <Card>
       <CardHeader
-        textAlign="center"
         title={(
           <Typography variant="body2" align="center">
             {name}
